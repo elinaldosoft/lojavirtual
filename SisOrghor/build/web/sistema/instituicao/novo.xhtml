@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="./../../resources/thema/template.xhtml">
+
+    <ui:define name="titulo">
+        titulo
+    </ui:define>
+
+    <ui:define name="migalhas">
+        <p:menuitem value="Inicio" action="/sistema/gerenciador.xhtml"/>
+        <p:menuitem value="Cadastro" action="#"/>
+        <p:menuitem value="Instituição" action="#"/>
+        <p:menuitem value="Novo" action="#"/>
+    </ui:define>
+
+    <ui:define name="corpo">
+        <ui:decorate template="form.xhtml">
+            <p:commandButton value="Gravar" action="#{contrfacul.cadastrar()}" update="@form" ajax="false"/>
+        </ui:decorate>
+    </ui:define>
+
+</ui:composition>

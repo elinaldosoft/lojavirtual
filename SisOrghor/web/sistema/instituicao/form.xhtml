@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core" >
+    <h:form>
+        <p:panel header="Cadastro de Instituição">
+            <p:tabView>
+                <p:tab title="Instituição">
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Nome Fantasia: "/>
+                        <p:inputText size="40" value="#{contrfacul.faculdade.nomeFantasia}"/>
+
+                        <h:outputLabel value="Razão Social:" />
+                        <p:inputText size="40" value="#{contrfacul.faculdade.razaoSocial}"/>
+
+                        <h:outputLabel value="CNPJ: "/>
+                        <p:inputMask mask="99.999.999/9999-99" value="#{contrfacul.faculdade.cnpj}"/>
+
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Endereco">
+
+                    <h:panelGrid columns="2">
+
+                        <h:outputLabel value="Endereco: "/>
+                        <p:inputText size="30" value="#{contrfacul.endereco.endereco}"/>
+
+                        <h:outputLabel value="Número: "/>
+                        <p:inputText id="numero" value="#{contrfacul.endereco.numero}"/>
+
+
+                        <h:outputLabel value="Bairro: "/>
+                        <p:inputText id="bairro" value="#{contrfacul.endereco.bairro}"/>
+
+
+                        <h:outputLabel value="CEP: "/>
+                        <p:inputMask id="cep" mask="99.999-999" value="#{contrfacul.endereco.cep}"/>
+
+                        <h:outputLabel value="Caixa Postal: "/>
+                        <p:inputText id="caixaPostal" value="#{contrfacul.endereco.caixaPostal}"/>
+
+                        <h:outputLabel value="Pais: "/>
+                        <p:inputText id="pais" value="#{contrfacul.endereco.pais}"/>
+
+                        <h:outputLabel value="Estado: "/>
+                        <p:inputText id="estado" value="#{contrfacul.endereco.estado}"/>
+
+                        <h:outputLabel value="Cidade: "/>
+                        <p:inputText id="cidade" value="#{contrfacul.endereco.cidade}"/>
+
+                        <h:outputLabel value="Num. Campus"/>
+                        <h:selectOneMenu value="#{contrfacul.tipoCampus}">
+                            <f:selectItems
+                                value="#{contrfacul.listCampus}"
+                                var="campus"
+                                itemLabel="#{campus}"/>
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Nome do Campus: "/>
+                        <p:inputText size="40" value="#{contrfacul.endereco.nomeCampus}"/>
+
+                        <h:outputLabel value="Complemento: "/>
+                        <p:editor id="complemento" width="600" value="#{contrfacul.endereco.complemento}"/>
+
+                        <p:commandButton value="Add"   
+                                         action="#{contrfacul.addEndereco()}" update="enderecos" ajax="false"/>  
+                        <p:ajaxStatus style="width:16px;height:16px;">  
+                            <f:facet name="start">  
+                                <h:graphicImage value="..resources/img/ajaxloading.gif" />  
+                            </f:facet>  
+
+                            <f:facet name="complete">  
+                                <h:outputText value="" />  
+                            </f:facet>  
+                        </p:ajaxStatus>      
+
+
+
+                    </h:panelGrid>
+
+                    <p:dataTable id="enderecos" value="#{contrfacul.enderecos}" var="item">
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Endereco"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endereco}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Bairro"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bairro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Número"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numero}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Num. Campus"/>
+                            </f:facet>
+                            <h:outputLabel value="#{item.campos}"/>
+                        </p:column>
+                        
+                    </p:dataTable>
+
+                </p:tab>
+            </p:tabView>            
+        </p:panel>
+        <ui:insert/>
+    </h:form>
+</ui:composition>
